@@ -57,33 +57,69 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Cigar palette tokens
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          light: "hsl(var(--gold-light))",
+          dark: "hsl(var(--gold-dark))",
+        },
+        mahogany: {
+          DEFAULT: "hsl(var(--mahogany))",
+          light: "hsl(var(--mahogany-light))",
+        },
+        cedar: "hsl(var(--cedar))",
+        cream: "hsl(var(--cream))",
+        smoke: "hsl(var(--smoke))",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      fontFamily: {
+        display: ["Playfair Display", "serif"],
+        serif: ["Cormorant Garamond", "serif"],
+        ui: ["Inter", "sans-serif"],
+      },
+      backgroundImage: {
+        "gradient-gold": "var(--gradient-gold)",
+        "gradient-card": "var(--gradient-card)",
+        "gradient-hero": "var(--gradient-hero)",
+        "gradient-cedar": "var(--gradient-cedar)",
+      },
+      boxShadow: {
+        gold: "var(--shadow-gold)",
+        card: "var(--shadow-card)",
+        deep: "var(--shadow-deep)",
+      },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "0% center" },
+          "100%": { backgroundPosition: "200% center" },
+        },
+        fadeInUp: {
+          from: { opacity: "0", transform: "translateY(20px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-8px)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        shimmer: "shimmer 3s linear infinite",
+        "fade-in-up": "fadeInUp 0.6s ease-out forwards",
+        float: "float 4s ease-in-out infinite",
       },
     },
   },
