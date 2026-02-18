@@ -1,12 +1,37 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { OnboardingQuiz, type UserLevel } from "@/components/OnboardingQuiz";
+import { AppNav, type Page } from "@/components/AppNav";
+import { Dashboard } from "@/components/Dashboard";
+import { Humidor, type CigarEntry } from "@/components/Humidor";
+import { Discover } from "@/components/Discover";
+import { Concierge } from "@/components/Concierge";
 
 const Index = () => {
+  const [level, setLevel] = useState<UserLevel | null>(null);
+  const [currentPage, setCurrentPage] = useState<Page>("dashboard");
+  const [cigars, setCigars] = useState<CigarEntry[]>([]);
+
+  if (!level) {
+    return <OnboardingQuiz onComplete={(l) => setLevel(l)} />;
+  }
+
+  const addCigar = (cigar: CigarEntry) => setCigars((prev) => [cigar, ...prev]);
+  const removeCigar = (id: string) => setCigars((prev) => prev.filter((c) => c.id !== id));
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="flex min-h-screen bg-background">
+      <AppNav currentPage={currentPage} onNavigate={setCurrentPage} />
+
+      <main className="flex-1 md:overflow-y-auto pt-16 md:pt-0">
+        {currentPage === "dashboard" && (
+          <Dashboard level={level} onNavigate={setCurrentPage} humidorCount={cigars.length} />
+        )}
+        {currentPage === "humidor" && (
+          <Humidor cigars={cigars} onAdd={addCigar} onRemove={removeCigar} />
+        )}
+        {currentPage === "discover" && <Discover />}
+        {currentPage === "concierge" && <Concierge level={level} />}
+      </main>
     </div>
   );
 };
