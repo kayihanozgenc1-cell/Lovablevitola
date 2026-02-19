@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Home, Archive, Compass, MessageCircle, X, Menu } from "lucide-react";
+import { Home, Archive, Compass, MessageCircle, BookOpen, X, Menu } from "lucide-react";
 
-type Page = "dashboard" | "humidor" | "discover" | "concierge";
+type Page = "dashboard" | "humidor" | "discover" | "journal" | "concierge";
 
 interface NavProps {
   currentPage: Page;
@@ -12,6 +12,7 @@ const navItems = [
   { id: "dashboard" as Page, label: "Home", icon: Home },
   { id: "humidor" as Page, label: "Humidor", icon: Archive },
   { id: "discover" as Page, label: "Discover", icon: Compass },
+  { id: "journal" as Page, label: "Journal", icon: BookOpen },
   { id: "concierge" as Page, label: "Concierge", icon: MessageCircle },
 ];
 
