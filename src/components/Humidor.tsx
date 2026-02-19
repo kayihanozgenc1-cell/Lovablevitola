@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Star, Trash2, X, ChevronDown } from "lucide-react";
+import { Plus, Star, Trash2, X, ChevronDown, Clock } from "lucide-react";
 
 export interface CigarEntry {
   id: string;
@@ -14,6 +14,23 @@ export interface CigarEntry {
   rating: number;
   notes: string;
   addedDate: string;
+  addedTimestamp: number; // for aging calculation
+}
+
+function getAgingText(timestamp: number): string {
+  const days = Math.floor((Date.now() - timestamp) / (1000 * 60 * 60 * 24));
+  if (days === 0) return "Added today";
+  if (days < 30) return `${days}d aging`;
+  if (days < 365) return `${Math.floor(days / 30)}mo aging`;
+  return `${(days / 365).toFixed(1)}yr aging`;
+}
+
+function getAgingColor(timestamp: number): string {
+  const days = Math.floor((Date.now() - timestamp) / (1000 * 60 * 60 * 24));
+  if (days < 30) return "text-muted-foreground";
+  if (days < 90) return "text-amber-400";
+  if (days < 365) return "text-emerald-400";
+  return "text-gold";
 }
 
 const origins = ["Cuba", "Nicaragua", "Dominican Republic", "Honduras", "Ecuador", "Brazil", "Mexico", "Cameroon"];
@@ -26,7 +43,7 @@ interface HumidorProps {
   onRemove: (id: string) => void;
 }
 
-const defaultForm: Omit<CigarEntry, "id" | "addedDate"> = {
+const defaultForm: Omit<CigarEntry, "id" | "addedDate" | "addedTimestamp"> = {
   name: "",
   brand: "",
   origin: "Cuba",
@@ -69,10 +86,12 @@ export function Humidor({ cigars, onAdd, onRemove }: HumidorProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.brand) return;
+    const now = Date.now();
     const entry: CigarEntry = {
       ...form,
-      id: Date.now().toString(),
+      id: now.toString(),
       addedDate: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+      addedTimestamp: now,
     };
     onAdd(entry);
     setForm(defaultForm);
@@ -177,6 +196,15 @@ export function Humidor({ cigars, onAdd, onRemove }: HumidorProps) {
                   <span className="text-muted-foreground font-ui">Qty</span>
                   <span className="text-foreground font-ui">{cigar.quantity}</span>
                 </div>
+                {cigar.addedTimestamp && (
+                  <div className="flex justify-between text-xs">
+                    <span className="text-muted-foreground font-ui">Aging</span>
+                    <span className={`font-ui font-medium flex items-center gap-1 ${getAgingColor(cigar.addedTimestamp)}`}>
+                      <Clock size={10} />
+                      {getAgingText(cigar.addedTimestamp)}
+                    </span>
+                  </div>
+                )}
               </div>
 
               {cigar.rating > 0 && (

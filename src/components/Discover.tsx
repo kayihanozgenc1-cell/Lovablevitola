@@ -14,19 +14,20 @@ interface Cigar {
   notes: string;
   description: string;
   tags: string[];
+  pairings: string[];
 }
 
 const cigarsDatabase: Cigar[] = [
-  { name: "Cohiba Behike 52", brand: "Cohiba", origin: "Cuba", wrapper: "Colorado Maduro", strength: "Full", size: "Robusto Extra", rating: 98, price: "$$$$$", notes: "Cedar, espresso, dark chocolate, leather", description: "The pinnacle of Cuban craftsmanship. Behike uses a unique medio tiempo leaf — the rarest tobacco in the world.", tags: ["Cuban", "Ultra-Premium", "Aged"] },
-  { name: "Padron 1964 Anniversary Natural", brand: "Padron", origin: "Nicaragua", wrapper: "Colorado Claro", strength: "Full", size: "Churchill", rating: 96, price: "$$$$", notes: "Cocoa, cream, leather, spice", description: "Celebrating over 50 years of Padron excellence. Sun-grown wrappers over aged Nicaraguan fillers.", tags: ["Nicaraguan", "Anniversary", "Classic"] },
-  { name: "Arturo Fuente Opus X", brand: "Arturo Fuente", origin: "Dominican Republic", wrapper: "Rosado", strength: "Full", size: "Fuente Fuente", rating: 97, price: "$$$$", notes: "Floral, cedar, pepper, cream", description: "The first Dominican puro with its own wrapper. A landmark achievement in cigar history.", tags: ["Dominican", "Landmark", "Premium"] },
-  { name: "My Father Le Bijou 1922", brand: "My Father", origin: "Nicaragua", wrapper: "Oscuro", strength: "Full+", size: "Torpedo", rating: 95, price: "$$$$", notes: "Dark earth, roasted coffee, fig, leather", description: "Inspired by pre-Castro Cuban cigar traditions. Deeply complex and incredibly satisfying.", tags: ["Nicaraguan", "Maduro", "Bold"] },
-  { name: "Davidoff Grand Cru No. 2", brand: "Davidoff", origin: "Dominican Republic", wrapper: "Colorado Claro", strength: "Mild", size: "Lonsdale", rating: 94, price: "$$$$", notes: "Creamy cedar, toasted oak, floral", description: "Davidoff's benchmark of elegance. The ultimate expression of mild, refined smoking.", tags: ["Dominican", "Mild", "Elegant", "Beginner-Friendly"] },
-  { name: "Montecristo No. 2", brand: "Montecristo", origin: "Cuba", wrapper: "Colorado", strength: "Medium", size: "Torpedo", rating: 95, price: "$$$", notes: "Cedar, coffee, almond, subtle spice", description: "Perhaps the world's most famous cigar. The No.2 torpedo is iconic — perfectly balanced.", tags: ["Cuban", "Iconic", "Balanced", "Beginner-Friendly"] },
-  { name: "Rocky Patel Vintage 1990", brand: "Rocky Patel", origin: "Honduras", wrapper: "Connecticut Shade", strength: "Mild", size: "Robusto", rating: 91, price: "$$", notes: "Cream, mild wood, light pepper", description: "Buttery smooth with excellent construction. Perfect for those beginning their cigar journey.", tags: ["Honduran", "Mild", "Value", "Beginner-Friendly"] },
-  { name: "Liga Privada No. 9", brand: "Drew Estate", origin: "Nicaragua", wrapper: "Brazilian Corojo", strength: "Full", size: "Robusto", rating: 96, price: "$$$", notes: "Dark chocolate, coffee, earth, barnyard", description: "Drew Estate's magnum opus. The Brazilian wrapper delivers extraordinary complexity.", tags: ["Nicaraguan", "Boutique", "Bold"] },
-  { name: "Plasencia Alma Fuerte", brand: "Plasencia", origin: "Nicaragua", wrapper: "Nicaraguan Habano", strength: "Full", size: "Conquistador", rating: 97, price: "$$$", notes: "Dark cocoa, coffee bean, roasted nuts, pepper", description: "Made from the finest tobacco from 6 different Nicaraguan growing regions.", tags: ["Nicaraguan", "Premium", "Award-Winning"] },
-  { name: "Romeo y Julieta Reserva Real", brand: "Romeo y Julieta", origin: "Dominican Republic", wrapper: "Ecuador Connecticut", strength: "Medium", size: "Churchill", rating: 90, price: "$$", notes: "Creaminess, subtle spice, dried fruit", description: "A refined daily smoker. Excellent entry point into the premium Dominican tradition.", tags: ["Dominican", "Medium", "Daily Smoker", "Beginner-Friendly"] },
+  { name: "Cohiba Behike 52", brand: "Cohiba", origin: "Cuba", wrapper: "Colorado Maduro", strength: "Full", size: "Robusto Extra", rating: 98, price: "$$$$$", notes: "Cedar, espresso, dark chocolate, leather", description: "The pinnacle of Cuban craftsmanship. Behike uses a unique medio tiempo leaf — the rarest tobacco in the world.", tags: ["Cuban", "Ultra-Premium", "Aged"], pairings: ["Aged Rum", "Espresso", "Port Wine"] },
+  { name: "Padron 1964 Anniversary Natural", brand: "Padron", origin: "Nicaragua", wrapper: "Colorado Claro", strength: "Full", size: "Churchill", rating: 96, price: "$$$$", notes: "Cocoa, cream, leather, spice", description: "Celebrating over 50 years of Padron excellence. Sun-grown wrappers over aged Nicaraguan fillers.", tags: ["Nicaraguan", "Anniversary", "Classic"], pairings: ["Bourbon", "Dark Chocolate", "Turkish Coffee"] },
+  { name: "Arturo Fuente Opus X", brand: "Arturo Fuente", origin: "Dominican Republic", wrapper: "Rosado", strength: "Full", size: "Fuente Fuente", rating: 97, price: "$$$$", notes: "Floral, cedar, pepper, cream", description: "The first Dominican puro with its own wrapper. A landmark achievement in cigar history.", tags: ["Dominican", "Landmark", "Premium"], pairings: ["Single Malt Scotch", "Cognac", "Espresso"] },
+  { name: "My Father Le Bijou 1922", brand: "My Father", origin: "Nicaragua", wrapper: "Oscuro", strength: "Full+", size: "Torpedo", rating: 95, price: "$$$$", notes: "Dark earth, roasted coffee, fig, leather", description: "Inspired by pre-Castro Cuban cigar traditions. Deeply complex and incredibly satisfying.", tags: ["Nicaraguan", "Maduro", "Bold"], pairings: ["Rye Whiskey", "Cold Brew", "Madeira Wine"] },
+  { name: "Davidoff Grand Cru No. 2", brand: "Davidoff", origin: "Dominican Republic", wrapper: "Colorado Claro", strength: "Mild", size: "Lonsdale", rating: 94, price: "$$$$", notes: "Creamy cedar, toasted oak, floral", description: "Davidoff's benchmark of elegance. The ultimate expression of mild, refined smoking.", tags: ["Dominican", "Mild", "Elegant", "Beginner-Friendly"], pairings: ["Champagne", "White Tea", "Latte"] },
+  { name: "Montecristo No. 2", brand: "Montecristo", origin: "Cuba", wrapper: "Colorado", strength: "Medium", size: "Torpedo", rating: 95, price: "$$$", notes: "Cedar, coffee, almond, subtle spice", description: "Perhaps the world's most famous cigar. The No.2 torpedo is iconic — perfectly balanced.", tags: ["Cuban", "Iconic", "Balanced", "Beginner-Friendly"], pairings: ["Cuban Coffee", "Añejo Tequila", "Sherry"] },
+  { name: "Rocky Patel Vintage 1990", brand: "Rocky Patel", origin: "Honduras", wrapper: "Connecticut Shade", strength: "Mild", size: "Robusto", rating: 91, price: "$$", notes: "Cream, mild wood, light pepper", description: "Buttery smooth with excellent construction. Perfect for those beginning their cigar journey.", tags: ["Honduran", "Mild", "Value", "Beginner-Friendly"], pairings: ["Light Beer", "Cappuccino", "Sparkling Water"] },
+  { name: "Liga Privada No. 9", brand: "Drew Estate", origin: "Nicaragua", wrapper: "Brazilian Corojo", strength: "Full", size: "Robusto", rating: 96, price: "$$$", notes: "Dark chocolate, coffee, earth, barnyard", description: "Drew Estate's magnum opus. The Brazilian wrapper delivers extraordinary complexity.", tags: ["Nicaraguan", "Boutique", "Bold"], pairings: ["Stout Beer", "Mezcal", "French Press Coffee"] },
+  { name: "Plasencia Alma Fuerte", brand: "Plasencia", origin: "Nicaragua", wrapper: "Nicaraguan Habano", strength: "Full", size: "Conquistador", rating: 97, price: "$$$", notes: "Dark cocoa, coffee bean, roasted nuts, pepper", description: "Made from the finest tobacco from 6 different Nicaraguan growing regions.", tags: ["Nicaraguan", "Premium", "Award-Winning"], pairings: ["Armagnac", "Double Espresso", "Dark Rum"] },
+  { name: "Romeo y Julieta Reserva Real", brand: "Romeo y Julieta", origin: "Dominican Republic", wrapper: "Ecuador Connecticut", strength: "Medium", size: "Churchill", rating: 90, price: "$$", notes: "Creaminess, subtle spice, dried fruit", description: "A refined daily smoker. Excellent entry point into the premium Dominican tradition.", tags: ["Dominican", "Medium", "Daily Smoker", "Beginner-Friendly"], pairings: ["Pinot Noir", "Chai Latte", "Amaretto"] },
 ];
 
 const allTags = ["All", "Cuban", "Nicaraguan", "Dominican", "Beginner-Friendly", "Bold", "Mild", "Iconic", "Premium", "Award-Winning"];
@@ -209,6 +210,19 @@ export function Discover() {
                 <p className="text-xs font-ui tracking-wider uppercase text-muted-foreground mb-2">Flavor Profile</p>
                 <p className="font-serif-body text-foreground italic">{selected.notes}</p>
               </div>
+
+              {selected.pairings.length > 0 && (
+                <div className="border-t border-border pt-4 mt-4">
+                  <p className="text-xs font-ui tracking-wider uppercase text-muted-foreground mb-2">Pairs Well With</p>
+                  <div className="flex gap-2 flex-wrap">
+                    {selected.pairings.map((p) => (
+                      <span key={p} className="text-xs font-ui px-3 py-1.5 border border-gold/30 text-gold bg-gold/5">
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
         </motion.div>

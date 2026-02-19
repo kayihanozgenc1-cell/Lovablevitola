@@ -4,12 +4,14 @@ import { AppNav, type Page } from "@/components/AppNav";
 import { Dashboard } from "@/components/Dashboard";
 import { Humidor, type CigarEntry } from "@/components/Humidor";
 import { Discover } from "@/components/Discover";
+import { Journal, type JournalEntry } from "@/components/Journal";
 import { Concierge } from "@/components/Concierge";
 
 const Index = () => {
   const [level, setLevel] = useState<UserLevel | null>(null);
   const [currentPage, setCurrentPage] = useState<Page>("dashboard");
   const [cigars, setCigars] = useState<CigarEntry[]>([]);
+  const [journalEntries, setJournalEntries] = useState<JournalEntry[]>([]);
 
   if (!level) {
     return <OnboardingQuiz onComplete={(l) => setLevel(l)} />;
@@ -17,6 +19,7 @@ const Index = () => {
 
   const addCigar = (cigar: CigarEntry) => setCigars((prev) => [cigar, ...prev]);
   const removeCigar = (id: string) => setCigars((prev) => prev.filter((c) => c.id !== id));
+  const addJournalEntry = (entry: JournalEntry) => setJournalEntries((prev) => [entry, ...prev]);
 
   return (
     <div className="flex min-h-screen bg-background">
@@ -30,6 +33,9 @@ const Index = () => {
           <Humidor cigars={cigars} onAdd={addCigar} onRemove={removeCigar} />
         )}
         {currentPage === "discover" && <Discover />}
+        {currentPage === "journal" && (
+          <Journal entries={journalEntries} cigars={cigars} onAdd={addJournalEntry} />
+        )}
         {currentPage === "concierge" && <Concierge level={level} />}
       </main>
     </div>
