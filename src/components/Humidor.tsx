@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Star, Trash2, X, ChevronDown, Clock } from "lucide-react";
+import { Plus, Star, Trash2, X, ChevronDown, Clock, Eye, LayoutGrid } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { HumidorBox } from "./HumidorBox";
 
 export interface CigarEntry {
   id: string;
@@ -49,6 +50,7 @@ export function Humidor({ cigars, onAdd, onRemove }: HumidorProps) {
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState(defaultForm);
   const [selectedCigar, setSelectedCigar] = useState<CigarEntry | null>(null);
+  const [viewMode, setViewMode] = useState<"humidor" | "grid">("humidor");
   const { t } = useLanguage();
 
   const getAgingText = (timestamp: number): string => {
@@ -97,10 +99,28 @@ export function Humidor({ cigars, onAdd, onRemove }: HumidorProps) {
                 : t("humidor.count" as any, { count: cigars.length, s: cigars.length === 1 ? "" : "s" })}
             </p>
           </div>
-          <button onClick={() => setShowForm(true)} className="flex items-center gap-2 px-5 py-2.5 bg-gold text-mahogany font-ui font-medium text-sm tracking-wider uppercase hover:shadow-gold transition-all duration-300 hover:scale-[1.02]">
-            <Plus size={14} />
-            {t("humidor.addCigar" as any)}
-          </button>
+          <div className="flex items-center gap-2">
+            <div className="flex border border-border overflow-hidden mr-2">
+              <button
+                onClick={() => setViewMode("humidor")}
+                className={`p-2 transition-colors ${viewMode === "humidor" ? "bg-gold/20 text-gold" : "text-muted-foreground hover:text-cream"}`}
+                title="Humidor View"
+              >
+                <Eye size={14} />
+              </button>
+              <button
+                onClick={() => setViewMode("grid")}
+                className={`p-2 transition-colors ${viewMode === "grid" ? "bg-gold/20 text-gold" : "text-muted-foreground hover:text-cream"}`}
+                title="Grid View"
+              >
+                <LayoutGrid size={14} />
+              </button>
+            </div>
+            <button onClick={() => setShowForm(true)} className="flex items-center gap-2 px-5 py-2.5 bg-gold text-primary-foreground font-ui font-medium text-sm tracking-wider uppercase hover:shadow-gold transition-all duration-300 hover:scale-[1.02]">
+              <Plus size={14} />
+              {t("humidor.addCigar" as any)}
+            </button>
+          </div>
         </div>
         <div className="divider-gold mt-6" />
       </motion.div>
@@ -118,8 +138,21 @@ export function Humidor({ cigars, onAdd, onRemove }: HumidorProps) {
         </motion.div>
       )}
 
-      {/* Cigar Grid */}
-      {cigars.length > 0 && (
+      {/* Humidor Box View */}
+      {cigars.length > 0 && viewMode === "humidor" && (
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+          <p className="text-xs font-ui tracking-[0.2em] uppercase text-muted-foreground mb-5 text-center">
+            {t("humidor.myCollection" as any)} — {cigars.length} {cigars.length === 1 ? "cigar" : "cigars"}
+          </p>
+          <HumidorBox cigars={cigars} onCigarClick={setSelectedCigar} onRemove={onRemove} />
+          <p className="text-[10px] font-ui text-muted-foreground/50 text-center mt-4 tracking-wider">
+            Click a cigar to view details
+          </p>
+        </motion.div>
+      )}
+
+      {/* Cigar Grid View */}
+      {cigars.length > 0 && viewMode === "grid" && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
           {cigars.map((cigar, i) => (
             <motion.div key={cigar.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
